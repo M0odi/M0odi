@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    
+    <title>Piroll</title>
+    
+    <link rel="shortcut icon" href="img/header/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    
+    <!-- SVG Pack -->
+    <div class="svg-icons" style="display: none;">
+        
+        <svg>
+            
+            <symbol id="statistics-icon-1" viewBox="0 0 40 36">
+                
+                <image id="pe-7s-portfolio" width="40" height="36" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABA0lEQVRYhe2YgQ2CMBAAX+MCrOAKrIAjuAIr1BF0Jl2BFVzBEWo+aUnhFb7/JTbmL/nElKdctC/f7rz3IOQYgsMzRD4oKAzn+Tjpcw7Sry/hQkamXMlIBiUEb2SksGADAC25sk5cfx0zl5M3Z8AiwRvv5FIdnNKfGNfSUIlYG5dGKohyD5L6Y/a1Cc0xQS0mqMUEtfy1oMNujRmO3M3E2q2SgjjRi2R8h9vuI31mu9XED9UXCfb9XdhZdJ/2BAsR9yRLORDmzt2TjE4l1qC4QjmUEFQVwRoaQazetQpWY686LSaoxQS1mKCW9I/6LDxE2oKxU0oF+0rkJuDplvT4bXsAhjdnoSeGvWYByQAAAABJRU5ErkJggg=="/>
+                
+            </symbol>
+            
+            <symbol id="statistics-icon-2" viewBox="0 0 40 40">
+                
+                <image id="pe-7s-clock" width="40" height="40" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAACBElEQVRYhc2Zi22DMBCGr1EWoCOwAivQEVghHSErtCPACGEEGCGskBHICFeh/kddP4jBDvEvnZAc++4zxo9z3piZIqnU3PQx3B6NEj/lRFQRUQGwzNHqDtCBiFoiuhk1HmjtG5xgToATgGHhbZXohHRggmwW6puaAD0sZ+aO/1Qzc+XZllC3Vtp38Gmr+8+MAoudmHmE49rXscNyBXSEb1ddL0BxdmXmwvL7VivgUzrt9GMUWOCmZ2b5PdQyLYatjhPwYcMF63yGzjeWUQDnzgYeNum8so1AGh3TK+b4eK8Bw7oFMEPMUZ+EB23dqbFmfWKR3Ut3xMzAMEsFLGENFt+9NSB2qW6bKuAJz+8XwIkktrDMgLK3Nlv2y4i6gaEC0wwoe2uUE0ighKFSAQt8qG0CgC1YJqYZsHzRxHBpkIkigFkiwyvq5Yh2sJyEU1KpL9TJKXnANTmJHN931XHF5JjgvozS56qXpGnE1P5YCJfL6u6hW+CO1OGFvMsQ9x6zOTToGhUysjJJBqw7VRT3YarAMqiAssWlsCYKwy+Tcnq94DQcklaGWg6Gi+1E3eB5Nvq0n84ai5GTyO1BzBzY1wrl1uGpSdMWcyZNNmehaecW8047xRaT6SfBWWMZBY6GyV196JBJXh6p32Sy12+q45dcYCZ/Bbz1lj/ZS/Qlxf8bgoh+AGMnHxuLg/GHAAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+            <symbol id="statistics-icon-3" viewBox="0 0 44 41">
+                
+                <image id="pe-7s-star" width="44" height="41" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAACXklEQVRYhc1Xi1HDMAw1HAuEEcwIYYSskBXSEcoIXaErJCOUEcII7QhhBHMG6dBZ8ieuzPHu3rWVHFuRny31wTlnGmCEKRftqR+ZRQcDUB2tMrzB5zPz3IkWGfZy6IAj8/7DgIfIdxW0kISXww2+W21ZaGe4BykswA5satAOmF5neKWp6lhbEldjzKcx5hV+r5DlFzayEpoZ7kGztFgsYFOThWbAUnVTl4WmJEI5IFRloZVhSQ4IVVloBSzJAaEqCy1JrPAZyqHUX4wn0NcZPmvht/st8azP8skYc2GecvjzccAMY9C4bTdSXktxSDxjYf49sEB84cN30D5gwqNzbgMeA99fMhqHFETvnFvdD2bnXCeMacUO1nQQQx+uk1r4BA/6txwEvzYHWMvB2uL8zBBwJJO0lMiRJGcU/MUB4zZdyDZZYUwtLZHfpUR+zJAgzcKUGFfKqWb3mCFDjQOZPVgpJp0R+gXPucORIB7mc80L1/QSn6RAfDBvHvjMDebahdpeYr3zDyb+Ud3dW9RkGFtFqTMrxUJa0uYBY7/xzjy/6DLNFD67v+WUhJ3hCtdRbJw/9Vdg6gbYYC7JF2XUEaElJ1waQ+/q3B2LN82uQsQMGWJAYfmUqmGuio01JZ8ZMpwFOQyZbNKsh03UBnM2CbgT5FDa0cU6MZRFcQFhhgQnIgdbUaLDkmyJLIp7E2ZIcCaNT0oCpeeAzlUsC2aIEOWAyF1ZOeLVR1EkC2aIcCITVzUtAmkTVSwLZohwVuyDQ+6SBTMI7Gr61gqJ+DWyO1fSrfmeYHcbWIn0WsaYL8TMio1JCgLCAAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+            <symbol id="statistics-icon-4" viewBox="0 0 40 36">
+                
+                <image id="pe-7s-like" width="40" height="36" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABzklEQVRYhc3Xi3HCMAwAUDXXBdIRsoI7QjoCK7BCVigj0BHoCDBCGCEdAUZQz5xE1URxHFuE6E4HR2z5xfnYvCAiBGIDAE5kCQAnALgCwBkAvgHgZ7z7LSpRx/evRf+zqKOHByq5QcQO/6JFxKNIGXtELJUaJR3juPRqtOJYR2MOLKGivlMzMjifxFEM7sQxR78htVEHp9qNmIzByfYb81l9BmD9rAWmpmR0rbTXsqQxkQylBjxQg61SYCp5xmS6iT5abslw6AMbMXNax1gkRwqOk2fSm4Cf4gs9We/0mRoN9dtl1PBPekufb3JaUy6tdtPH3ruhvJsKej9B8F0UH9fMK8DBFucvcUtFPwbNnhtHf5nlDK4xXLFi3C0Ko3vmUXEtaLGuVojzpnNBu5NqZUj2nArxSDeDZs8Ltpz4Zbk3WKKs0sn1mItWtMh3RitBzkrUkaXq72Y22nZnYRxv9+77x36j7ZOQEvdvT6A1Xho5ihsDLokM4kLAJZCTuCngI5FRuBjgI5DRuFigJXIWbg7QAjkbNxeYg0zCpQBTkMm4VOAcZBYuBxiDzMblAkNIE5wFUEOa4ayAfaQZzhIokWY4n6+G/zq+Rr6nBwD8Aki6Y763sPnBAAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+            <symbol id="works-icon" viewBox="0 0 48 30">
+                
+                <image id="pe-7s-look" width="48" height="30" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAeCAYAAABqpJ3BAAACfUlEQVRYhdVYi23cMAxlgyzgFbyCVvAKXsEZwR0hHcEZIR7hOsLdCNcRfCOwEPKE8Cjq5xj5ECAMSxRFUk8SxV/MTAdTL7gTqi9EdMP3MHo8SNFIRAO+XdR7T96Jv+AV/7vpIyvgDZ2IaBZGX2CYFWmH7wAO9EJEf4joXzRDDXkHdvDMzBu/0ZmZJ2buGvR0GHPid1qYuTdks5ztNHhg5iumPOHfkmvhHsYHmlvG10KoA1RmLPVv4DdFTsGEAK3cBvabfsE4L/dUkH8jyyvFDjBhRCoHlUmskEVXyFhjpY4NXJItOjBWKuuEk2FPONHv0CZlcoHoVdAsmaIDExRsypic8TX4nSud6MTeeE3JRg2Nk5Aw3qnJJ+iZjVPKCf2WTslLzpbmAYlVkpEfxREraUOfDlIOmkWbUoJZ3Am+qiiOYqJRtYeVku1n6LB0p2w7pxxoNd6pCHaIchQltVc20R9WMLfHsjYmOyp4VpNPRoQ1j8rpEISWy+vO1kdcHhNykqfooihTuGxCPpS74FYluyczDTZ6my8PUffPIvcAj17g0bLD/JBlhrR4jCTeaVSyLpIo0z1iUtj6aZs4KVDgrzhG72yrFkzwZ19kkU2WcHaAwZ+VSpi2RA3GwGQipbBde563JHPFjDRqUPwsJss9945Op514V2QhFjUYLB8YuVuWDnrQhBXaap6stU9Kf16/4tm34kmZqyLseVJ6+WeMXXE/lUsullcJ7gSkNkQqB4NaHrDPuPYZ2QohC58nMeGyozphlVV2BeQjha0BVYoAlZuAyc2AmFXYuqGotRryVXREbbQXpUWNe4u+TWkxRcEJnaj5lfFR3ldCtIiI/gP3/Me+2ZSfRgAAAABJRU5ErkJggg=="/>
+                
+            </symbol>
+            
+            <symbol id="process-play" viewBox="0 0 85 85">
+                
+                <image id="arrow" width="85" height="85" xlink:href="data:img/png;base64,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"/>
+                
+            </symbol>
+            
+            <symbol id="services-1" viewBox="0 0 42 39">
+                
+                <image id="pe-7s-diamond" width="42" height="39" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAnCAYAAAB5XdqFAAACsElEQVRYhc1Yu3XbQBAcW2wAqUOmDqESqNDOhA5IlgCWQKbOgBLEEohQzowWmCpEC34nz/KtgPuCR8rzHh5BfBZzuzt7e/dlvV4jEqvYBxMwAOhjHl9MrthRA9hb71yPLYA2B9FnkjwDWNIDu8lT8TA2Gnpz4Hkf8myIaElDhuQjCW+YBnPIFrRhCD7x2onHI79jxVfbRWX0hecVjZswHZkKm8kbYbxw8DvlxUp9q3BZ8BE9MUzbUVjkf5MosEZFQudkR5sSPStcRBs18uPonoTtrDwUwoaHIXiwPNvyeHaJ1ka0DhgVshXPT76Q0YtNhAi9aTUmKiPq+aIPPT1beMiW9LpEYZg8MSXbq4haiZZq5E8TE3b0nvzSYowhCRWpQWnkA1FtdBtpVNAypCYamqx8aBc7+xBnFalLJXgoy3cPvwL4DuAngN+TV8Mw73xjbr3x9wdJ/pph703ZMYM9mrm+sSXvf4bDQs0GvaUUzYEMOjh/R6Bm6M8LlqAlP3DIQFYmAVdpSyVp7LQipp2rLHwSpEx2UnuFqC7gjaMm3gu6ERJOH+qo3LDVxHuhUI6qdJkcz0ydqon1JxCV1Bs3QhOiUILak/C9UPN7ra1i2IjCN+feCMEew0V0UC/cWlx6aeLsMVxEEWg4ckHP597GxUcUzNVbims/Wpo4ESKKG4orpkG/IIYobiCulRKPr+u/IJZoTnEtVddf+fJyDlFkEpcWT+Vbx4+RQhQZxKXF003uepBKFEz8boa4RDzHOS3gHKJQYYsV1yphdWvFXKIpbWGhxJO6cLxgLlGo0hISl6z5Jx1RCq4hClWsXeLybQ0lIXYj1wfxquyhCmS/qcuwfspCFMzXP6oLgm05cQ2uDb1Ai2vJI2nmCSEXUVjm7dStHC9yhV5gxCUbWzk2IP4BwF8TlsRlVK3U+QAAAABJRU5ErkJggg=="/>
+                
+            </symbol>
+            
+            <symbol id="services-2" viewBox="0 0 40 40">
+                
+                <image id="pe-7s-arc" width="40" height="40" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAACrElEQVRYhb2YgZGbMBREN55rgCuBlEBKcErwdWBTwlGCXQKUEJfglBBKSFqghGR02e9ZCyEjELczjD0g6z+vvsSXvhyPRySoArAHUPB7SH949QB+Bp6HdAJwCNzvX0a3xqrYgQMr5amBqAq2NQ2EvPKaq721iwG6Rq1AuQAdA/aj1o+qxO0DL/dnLuzDVyf3W/lz2I2a/ge68XKONABeAbwxwDM4sE3H37yyDwv+K5IeLUegtjg+4Ikd7AnzlZ/DqKv5GqSvhga4GO8RuLvLO69By6H4xs7WgIV0Yd8uTc6MV0zBQXLQGnQbgamcAd/p4Jn5WQTgrgbYyszrNoZTdYxbEtqf5R+wO5mdAyfGVALnVMFYJYe7lNn7oB0b1LQdnwBZSIyOcTsOtT9xHiZJ/wmQPlzN+7asnP24/jKzJeQUnOmNafYw1KGFegvIZ3CQN02lr8sQYG7IOXAmm6xPAXNBpsBB3jr2Lo8CroVMhTPZeniaA7gUcikcpJY8zAVMhVwDZ7paUTwX0CAbD2ALOEhJlwQICRqCzAWngEUq4BRkTjhIwVLFSv6YtDy/MbFzwSlksRQQHmRuOEyV/KnSHLShzqo1gFqF1wS8ZYT82HouHWIfTu/fuGbmqMz7JQ5OweV00lJnSAWcgssNaYDRow+/ui0SSiasHO474JSDLfcH6kDJqR+DU8g1Tu65VxpCDk4N423UMq6lTtoh1X3bOQduqZY4aTu7EaBu4N3nX3Gt8I7eUpQCued1P0CwIT7JJtpkiaqb7JQzPtXc4Tb3LnbDAPV8zmTu6bu2wXI9g7RD0gZyMBqaJCo76cyZkyHIkstar+4hMElCyl2l+Dnp4H7w2SjOMwdzw2m/oJO/+b0Ond7GHLxuBGdykJZro4NLU8zB4A8yy/ItHAvAPzsi50f+TlMtAAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+            <symbol id="services-3" viewBox="0 0 26 44">
+                
+                <image id="pe-7s-phone" width="26" height="44" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAsCAYAAAB7aah+AAAA1klEQVRYhe2Y7w2CMBBHHw0LsIIruAKO4Ai4givoCl3BEWQFVmAFRtAcaQ16khjDEWPuJf0ADb/Xfx+4Fk3TAByAChsGIJbAETgZSTJVAGqgAwqjJtl1SMZBjWE5xuxgKHiiTA9b4Kp6l0Gyu9VnJBu2U73LMK7UajNykYtc5CKNi1zkIhdpXPQ1+Qdyk8oXCyS7n4osa6Q+L11rWB9J9h+eulK9mUcK6v1L70UK4dkvJvzkjOKno3/H6ofB6jLjkS0iOedS0N6MmmS3skfndBdgd0UD8Q40LS9XqdMzYgAAAABJRU5ErkJggg=="/>
+                
+            </symbol>
+            
+            <symbol id="services-4" viewBox="0 0 44 42">
+                
+                <image id="pe-7s-joy" width="44" height="42" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAqCAYAAADI3bkcAAADPklEQVRYhdWZgXGqQBCGN44N0AIpgZSgJWgHYglYApYQSsASQgmhBGmBEt6by/vX92e5QzDgkH+GicJx993e3u6eeTkcDrJgpSISichZEVdLpgXwjm8sGdhZNhGRim8uGTjF318B7KybAfZXAJd2s6mWBuwgP0VkIyIna11ZELC6wBUb7eSzrtO6c2deuRAVw4IMm+BzBdCOZZ8N7EBzwIoBamn5686bRs8AzrHcjYgcReQCyIc0N3CGq4AVHwZVzQns/DKHRY+dpw9qzijhYNspYWVG4ASR4DyFG7DmAtawdek8+aGG+nAKiAjfa2ykptPynxI8Cz2P0WeCPltMrui0NLpn4QSp8p2CO2elD1uvUhsf7A7vXNGHtosxxpXG8aoPOEXnMTbOq4hsReQNn8/ovCQA32AxTbBEmwL9uGuP/o5US6SdXqDQESnFjGtAhjZOBKtllMVsW3WjBqCFpw23/cCkjj4X8QEneKm5A2sVAz4hyBaTHpR2PdBbW1dYYF2SCMs0aUgaoSCH9WEtUPYB2MxUWnOpBUME17yJgTfw3aKnvMsDG2sO1djYOzYSA2f46y2cJ5IzyB9c+YAuNVMq2y1xaFHtSwaZ+c4u0fp2ckAxRZ6GSk59X4v7mlZY+1dXrBRY457PutYSG4KuRgILudyOoklmxtlTWldg175Sl0hp5lYvdAnqWr237bQOq8alGa0lqByTeAUDJ44G7b4y6ori5uSFilGLCRYYa0sGarECXFuwKk1Sa7O8cytUH59g+RJtrGsqW7ymMDUkE20DbvNTqV/rprMWbnBvs4aph1q3r11MG8uqr9RkqL42biKRWnhonvcpwyYJwap0qfuKnz59s/AjHWhpqct4wn07+RhjbBANUoStsUaqddP5BrmnHeX4/cAIcwb0Owobb/l4T30FfEgpLNsgbo4JhxWKdo3HwUI9JAUeWoENLez7pPF4LPRXVlxRUH4GrMpC23rFJ2fUZoWXkh4ra006FayFrrAZyx7DJfr/jhU5fkknWTGHxxSb5m3iU4hCa91rD7MRHYadLnpEsj+Hsu7+ZjuR3AqHTjRug7uweQNWuZk5eLXimMPjVLLu+b8+FpG/EuLww7RPvdIAAAAASUVORK5CYII="/>
+                
+            </symbol>
+            
+            <symbol id="services-5" iewBox="0 0 44 44">
+                
+                <image id="pe-7s-plane" width="44" height="44" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAADCElEQVRYhc2YjY3bMAyFXw63gDuCPYJvhNwI6QZJRkhGSEaoR2hHiEeoV/AKHuEKFSTAUJT1Y9fNA4Q4Dq18oimJ4u54POIFVQE4AKgBtAAmAAOA/v0FYR3gT4KVcgO4v3nm/1cO9kEePgPYieY83L6ShxnW6ZMApVxY4FU8HIMFhciU4uELfQ7UJs9imVJg9wTcxYB/ADipeyO1nuD5ukQpsDwJpxgww3bUamo82puyHwhef4aUCittgiEhYc8CyOku7PZiIC19P6i+evFWOKzqAti/NhbwQYQBezT0yq37Ff2ZazwYHVagVxyDdX19SBsL+BeAhibbSQDfA4AWSG/Y1mIQLfUXgz1rm9jWXAtwZIKXSMN22iC2Do/0YEMP76nDB11vCpsCzGLwbwCuovO1wJNgc4BZE4VEszL4LQW2BJi1NjjPCWsSPmlpLrEWOG8wOqX0tFbyI8F5clo5bUibA7Nq2nh4U5jbmqU4FFrvF6U1gc2tNEPDlsCpicychq1CIifrsnIKFofP7GRdCpwDW0WA+dlZLy8BToGthE0nUlBLSStFKXAu7Cet05M4cmkx8GyslwDnwLbChtfq/YyX+7WBK9oQUmF1PttFvDzQ85X3SyHwg2LMS6wDsDqRiXmZT+RBL8sTx0Ucb6RqNRGudCrJhWV19F8X4yAgdzzzkMDAJ+MUPKoGceIohYXw8s04L0aXNga+EFzjWcSVnHwLdQSsvcx1jiDwG3m3FhPqEogvS3rFSIFlsC4Qy6Nx7wl4oLgcyPBGEF8AftP3kzFqDWvG3Iw4tPSKwf2YXn4XxY27MNyLT9lho/Z8r26QoZG8fFKxLFcKLz21ljXu6EowO7qGelW8mpTAsiwvz048C9iS9D6rWqE+MRqxLKtOnnI2jqQEu0DSy1zTG8RbfVIusBUSSyW9zAXIj1AdOhcYArpaGL9S7GVZLTVVAiw9a3qhQM7L32OwKASu5xb2BbLyE09WuXVOPR3juWi9VkgkKze9HMRy1vzDsmtQuR52r80qVm8jAH8ATTb9+YzPI6UAAAAASUVORK5CYII="/>
+                
+            </symbol>
+            
+            <symbol id="services-6" viewBox="0 0 44 41">
+                
+                <image id="pe-7s-star" width="44" height="41" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAACmElEQVRYhc1Zi23CMBB1KxZIRwgjwAhhhLABMEIyAowAI5ARyggwQjNCs0Jl6R06HNvxmYvUJ1nQYPse53cf04/dbmdmQI0tO+2tP0dPdFBhqGMuwjXzsirmIGyJFhjqpOcgXAXeq2AuDz8w/r2HV5BCh1HgmRq0CfN0RilN1ctzELZS6DHUZaFJ2B596RSLDs/UZKFJ2Ffd1GWhTZjkQFCXhRZhnxwIqrLQIuyTA0FVFlqEK48cCCQLlaq3QHI/4zUX9rjbyFrr5aMx5nv0SToGY8zhk97gldrCUrjZLSAHTvg2ehpHyfg8OS6wxD7YGmMajAIGTtEt02FlsRHMJx4DODx5uBo+YeMeR3h9UypSFLB5ZF/yxWm+oLMBssZEG9k/c90eHFSwVcP2Glxe4CNMaCETg2BpRjP00LCA3MYCOEbYIFiW0LM9pntGQMZQYs8jbCwngjcpDw/QUov0ZQ3sR7Pk2GMvSokb2IpCUjhIVz3ydm5AUmCdsddako2kle4BT1wQHDm6brD2gr1GgRVDTmkeWAkWGXPW9CkScJHbS9QwFg2QADqszWqGcghTq/jOz1Ada0lFyCFMnon1BsVEQNJasZdzCcfkQKmPUpYP2bKQEp6SQwOi5OF7JJNkyUJKOCSHAqX1yHoR6gWoD3YlkiULKeGVRw4Va5BaVlyoKLTOHALJIiQbLySE6ddITpbfIkatIHBivTCdAidde7wfhIQwl0PJ9MkbpBB4Y9OwJkosCwlhuqoUTtOyTaxYA2sdVyw4B0m/nfo/DrvxL/u7h/Gc0mxA+OpkiC/Nbo0f2SV0GxCAMsklYCOIVML85nrIaVo8cPdLkkUK4QJHt3E8ogVqM62NyWxB1/wp2OObEySROGFjzB+KdayGBWwJ4AAAAABJRU5ErkJggg=="/>
+                
+            </symbol>
+            
+            <symbol id="services-7" viewBox="0 0 39 40">
+                
+                <image id="pe-7s-magic-wand" width="39" height="40" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAoCAYAAAB99ePgAAABcUlEQVRYheXYgU3DMBAF0F/EAl0BRsgKZATYIJ2BEWAFRmhHCCswQlmhKyA358rpOfbZPieW+FLU6tIkT07jc7sbhgEr5UCX+ZJe7oFV6uWVNnHWxCVHE7cH0LGqPB2d4xZN3BHAmAns6NhjLdw7vaYCLcw9xzWauB8APb2XAl1YT+eogosBe2dfFFYD5wIvbA/PZQlm8sgqesBnVk38TNPzXOnIvbDKlF/aJHmijaUUN7LKFDMlfLKqP6alffj2lOJ6VpkiHTWTU60H4ptV0rP4Ffg3jT81ZhI+hzpJDRxbXQSy93SSajjv6oIy3j3doVanjltcXQQSBGrhok08EBc4m+80emsJzMYCZ1NKKU4D5gJnKbmtmjBvckcuB3ZilUhycLkjJv4xbZN6W6vfSjcpuFVhSMCtDoMQtwkMAtxmMERwm8IQwG0OwwKuCRg8uGZguMM1BYODaw4GwjUJA+Hs6rMpmIlZlbzRfxVNwQDgD98aWZL3YmAMAAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+            <symbol id="services-8" viewBox="0 0 43 46">
+                
+                <image id="pe-7s-paint-bucket" width="43" height="46" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAuCAYAAACxkOBzAAACc0lEQVRYhc2ZjXHCMAyFHxwLpCOwQlaAEegGwAhhBBihGaEZoRmhrMAKrNBz76m4jhPkP+Dd5cjFxP6syIrkzLbbLQJUA1gBuALoAVxCbk7VQnm/gfzgr60TgMPg30+EXQL44rkBOwOoAOwANDzfD+4qIA2sAK356EUdgE9Ct5xEUc0VnW8I1g9abi6wGrQUkAa2mrCaLLCa/3s6rEYb+nVR4FTY2jkvCpwCWztRoi0NHAtrg4r2pYFjYG3QtdNWFDgU1gX1RYliwCGwGlBREWAtbAioKDuwFnbDXy2oKCvwPViJo9cIUFE24ClY6TwFVJQFeAw2xkfvKRnYB1sCVJQE7MLGgPZ0leLAdvIda1H3LaaRVBY7jrnWTFgsW/LRjynYwnOnxnoUqCgIeG7VWO8PBhWpgRd8O/UjNVZuSVXs6kKfrad8eHGnxsqpiiDu3oOrUeAFZ1W6OrVBD0rjVD5Y4y9Hq/4vCbpPGWPOLaAzt4d8/pSibKCw4uy6AHAsaDXmlgJ7zQycYtGG21KDEGbnBrmAU0BXVtz/mILNAZzqo0eOfWL8/+cOvhQxFjgVtLFC24kc/6zrg40BTgWtCNtaKeeBeUtzDzYEOEd4kr5P1jXZ8xUfnoTVAC8zgIpVO883ipbtGw2sD/ibnct5asDfEch3f8sJ7LSwNrD4kbyez7zuG0irFfsZyxc6GmQZsn10pU+9AZjxcL8zxMJO9SGTCIJ9liTzql8Bth/LBSjJfy+vACs+2QxabpHCLLJO+4WxpFqGpiMXb8exZCH/fRR8BVgjU6waC5rDjuXGoqbtdwG+Cqy8XqXKNVY1UeAWJQD8AJIEzMJTH0p8AAAAAElFTkSuQmCC"/>
+                
+            </symbol>
+            
+        </svg>
+        
+    </div>
+    <!-- /SVG Pack\ -->
+   
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header_inner">
+
+                <img src="img/header/logo.png" alt="Logo">
+
+                <nav>
+
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#works">Works</a>
+                    <a href="#process">Process</a>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact</a>
+
+                </nav>
+                
+            </div>
+        </div>
+    </header>    
+    <!-- Header -->    
+    
+    <!-- Intro -->
+    <div class="intro" id="home" style="background-image: url(img/intro/header-banner.jpg)">
+        <div class="container">
+            <div class="intro_inner">
+                
+                <div class="intro_content">
+                    
+                    <h1>We Design and Develop</h1>
+                    
+                    <p>We are a new design studio based in USA. We have over 20 years of combined experience, and know a thing or two about designing websites and mobile apps.</p>
+                    
+                    <a href="#">Contact Us</a>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /Intro\ -->
+    
+    <!-- About Us -->
+    <div class="container container-about" id="about">
+        
+        <h2>About Us</h2>
+        
+        <p>Divide have don't man wherein air fourth. Own itself make have night won't make. A you under Seed appear which good give. Own give air without fowl moveth dry first heaven fruit, dominion she'd won't very all.</p>
+        
+        <img src="img/about-us/signature.png" alt="">
+        
+    </div>
+    <!-- /About Us\ -->
+    
+    <!-- Professional Skills -->
+    <div class="skills">
+        <div class="container">
+            <div class="skills_inner">
+                
+                <div class="skills_content">
+                    
+                    <h2>Professional Skills</h2>
+                    
+                    <!-- UI/UX Design -->
+                    <div class="skills_item">
+                       
+                        <h3>UI/UX Design⠀⠀75%</h3>
+                        
+                        <div class="skills_progres">
+                           
+                            <div class="progres_fill_1"></div>
+                            
+                        </div>
+                        
+                    </div>
+                    <!-- /UI/UX Design\ -->
+                    
+                    <!-- Web Development -->
+                    <div class="skills_item">
+                       
+                        <h3>Web Development⠀⠀90%</h3>
+                        
+                        <div class="skills_progres">
+                           
+                            <div class="progres_fill_2"></div>
+                            
+                        </div>
+                        
+                    </div>
+                    <!-- /Web Development\ -->
+                    
+                    <!-- Marketing -->
+                    <div class="skills_item">
+                       
+                        <h3>Marketing⠀⠀65%</h3>
+                        
+                        <div class="skills_progres">
+                           
+                            <div class="progres_fill_3"></div>
+                            
+                        </div>
+                        
+                    </div>
+                    <!-- /Marketing\ -->
+                    
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        <div class="skills_background"></div>
+        <img src="img/professional-skills/cactus-books.jpg" alt="">
+    </div>
+    <!-- /Professional Skills\ -->
+    
+    <!-- Statistics -->
+    <div class="statistics">
+        <div class="container">
+            <div class="statistics_inner">
+                
+                <!-- Projects Completed -->
+                <div class="statistics_item">
+                    
+                    <svg>
+                        <use href="#statistics-icon-1"></use>
+                    </svg>
+                    
+                    <div class="statistics_content">
+                        
+                        <h3>548</h3>
+                        
+                        <h4>Projects Completed</h4>
+                        
+                    </div>
+                    
+                </div>
+                <!-- /Projects Completed\ -->
+                
+                <!-- Working Hours -->
+                <div class="statistics_item">
+                    
+                    <svg>
+                        <use href="#statistics-icon-2"></use>
+                    </svg>
+                    
+                    <div class="statistics_content">
+                        
+                        <h3>1465</h3>
+                        
+                        <h4>Working Hours</h4>
+                        
+                    </div>
+                    
+                </div>
+                <!-- /Working Hours\ -->
+                
+                <!-- Positive Feedbacks -->
+                <div class="statistics_item">
+                    
+                    <svg>
+                        <use href="#statistics-icon-3"></use>
+                    </svg>
+                    
+                    <div class="statistics_content">
+                        
+                        <h3>612</h3>
+                        
+                        <h4>Positive Feedbacks</h4>
+                        
+                    </div>
+                    
+                </div>
+                <!-- /Positive Feedbacks\ -->
+                
+                <!-- Happy Clients -->
+                <div class="statistics_item">
+                    
+                    <svg>
+                        <use href="#statistics-icon-4"></use>
+                    </svg>
+                    
+                    <div class="statistics_content">
+                        
+                        <h3>735</h3>
+                        
+                        <h4>Happy Clients</h4>
+                        
+                    </div>
+                    
+                </div>
+                <!-- /Happy Clients\ -->
+                
+            </div>
+        </div>
+    </div>
+    <!-- /Statistics\ -->
+    
+    <!-- Works -->
+    <div class="works" id="works">
+        
+        <!-- Item 1 -->
+        <div class="works_item">
+            
+            <img src="img/works/black-nike.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 1\ -->
+        
+        <!-- Item 2 -->
+        <div class="works_item">
+            
+            <img src="img/works/blue-nike.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 2\ -->
+        
+        <!-- Item 3 -->
+        <div class="works_item">
+            
+            <img src="img/works/bulb.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 3\ -->
+        
+        <!-- Item 4 -->
+        <div class="works_item">
+            
+            <img src="img/works/camera-lense.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 4\ -->
+        
+        <!-- Item 5 -->
+        <div class="works_item">
+            
+            <img src="img/works/camera.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 5\ -->
+        
+        <!-- Item 6 -->
+        <div class="works_item">
+            
+            <img src="img/works/ear-pods.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 6\ -->
+        
+        <!-- Item 7 -->
+        <div class="works_item">
+            
+            <img src="img/works/gameboy.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 7\ -->
+        
+        <!-- Item 8 -->
+        <div class="works_item">
+            
+            <img src="img/works/pink-nike.jpg" alt="">
+            
+            <div class="works_content">
+                
+                <a href="#">
+                    <svg>
+                        <use href="#works-icon"></use>
+                    </svg>
+                </a>
+                
+            </div>
+            
+        </div>
+        <!-- /Item 8\ -->
+        
+        <a href="#" class="works_btn btn_gray">Load more works</a>
+        
+    </div>
+    <!-- /Works\ -->
+    
+    <!-- Process -->
+    <div class="container" id="process">
+        <div class="process">
+            
+            <div class="process_caption">
+                
+                <h2>Our Work Process</h2>
+            
+                <p>Was years it seasons was there form he in in them together over that, third sixth gathered female creeping bearing behold years.</p>
+                
+            </div>
+            
+            <div class="process_video">
+            
+                <img src="img/process/process.jpg" alt="" id="one-two">
+            
+                <a href="#">
+                    <svg onmouseover="changeItem()" onmouseout="rechangeItem()">
+                        <use href="#process-play"></use>
+                    </svg>
+                </a>
+            
+            </div>
+            
+        </div>
+    </div>
+    <!-- /Process\ -->
+    
+    <!-- Services -->
+    <div class="services" id="services">
+        <div class="container">
+            <div class="services_inner">
+                
+                <!-- Item 1 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-1"></use>
+                    </svg>
+                    
+                    <h3>UI / UX Design</h3>
+                    
+                    <p>Be set fourth land god darkness make it wherein own</p>
+                    
+                </div>
+                <!-- /Item 1\ -->
+                
+                <!-- Item 2 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-2"></use>
+                    </svg>
+                    
+                    <h3>Web development</h3>
+                    
+                    <p>A she'd them bring void moving third she'd kind fill</p>
+                    
+                </div>
+                <!-- /Item 2\ -->
+                
+                <!-- Item 3 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-3"></use>
+                    </svg>
+                    
+                    <h3>app / mobile</h3>
+                    
+                    <p>Dominion man second spirit he, earth they're creeping</p>
+                    
+                </div>
+                <!-- /Item 3\ -->
+                
+                <!-- Item 4 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-4"></use>
+                    </svg>
+                    
+                    <h3>game design</h3>
+                    
+                    <p>Morning his saying moveth it multiply appear life be</p>
+                    
+                </div>
+                <!-- /Item 4\ -->
+                
+                <!-- Item 5 -->
+                <div class="services_item">
+                    
+                    <svg class="icon-plane">
+                        <use href="#services-5"></use>
+                    </svg>
+                    
+                    <h3>SEO / marketing</h3>
+                    
+                    <p>Give won't after land fill creeping meat you, may</p>
+                    
+                </div>
+                <!-- /Item 5\ -->
+                
+                <!-- Item 6 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-6"></use>
+                    </svg>
+                    
+                    <h3>photography</h3>
+                    
+                    <p>Creepeth one seas cattle grass give moving saw give</p>
+                    
+                </div>
+                <!-- /Item 6\ -->
+                
+                <!-- Item 7 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-7"></use>
+                    </svg>
+                    
+                    <h3>graphic design</h3>
+                    
+                    <p>Open, great whales air rule for, fourth life whales</p>
+                    
+                </div>
+                <!-- /Item 7\ -->
+                
+                <!-- Item 8 -->
+                <div class="services_item">
+                    
+                    <svg>
+                        <use href="#services-8"></use>
+                    </svg>
+                    
+                    <h3>illustrations</h3>
+                    
+                    <p>Whales likeness hath, man kind for them air two won't</p>
+                    
+                </div>
+                <!-- /Item 8\ -->
+                
+            </div>
+        </div>
+    </div>
+    <!-- /Services\ -->
+    
+    <!-- Testimonials -->
+    <div id="testimonials">
+        <div class="container testimonials_container">
+            
+            <div class="testimonials_slider">
+                
+                <div class="slides">
+                    
+                    <input type="radio" name="rb" id="rb1" onchange="selectRadioOne()">
+                    <input type="radio" name="rb" id="rb2" checked onchange="selectRadioTwo()">
+                    <input type="radio" name="rb" id="rb3" onchange="selectRadioThree()">
+
+                    
+                    <div class="slide s1">
+                        
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum quaerat deleniti earum, voluptates veritatis nemo id atque, sequi ipsam praesentium, facilis modi vero, alias tempore!”</p>
+                        
+                        <h4>Michael Hopkins</h4>
+                        
+                    </div>
+                    
+                    <div class="slide">
+                        
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem ullam fuga quisquam repudiandae, voluptates doloremque possimus corrupti, aut eum id animi cupiditate mollitia sed quas dignissimos, voluptatum neque tenetur. Unde ipsa, aliquid.”</p>
+                        
+                        <h4>Johnny D.</h4>
+                        
+                    </div>
+                    
+                    <div class="slide">
+                        
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt facilis consequatur soluta, et voluptatum reiciendis.”</p>
+                        
+                        <h4>Brain London</h4>
+                        
+                    </div>
+                    
+                    <div class="slider_navigation">
+                   
+                        <label for="rb1" class="bar" id="bar-one"></label>
+                        <label for="rb2" class="bar" id="bar-two"></label>
+                        <label for="rb3" class="bar" id="bar-three"></label>
+                    
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <!-- /Testimonials\ -->
+    
+    <!-- Awards -->
+    <div class="container">
+        <div class="awards">
+            
+            <div><img src="img/awards/vintage-handmade-logo.png" alt=""></div>
+            
+            <div><img src="img/awards/mountain-logo.png" alt=""></div>
+            
+            <div><img src="img/awards/authentic-collection-logo.png" alt=""></div>
+            
+            <div><img src="img/awards/mountainbike-logo.png" alt=""></div>
+            
+            <div><img src="img/awards/vintage-handmade-logo.png" alt=""></div>
+            
+        </div>
+    </div>
+    <!-- /Awards\ -->
+    
+    <!-- Send -->
+    <div class="send">
+        <div class="container send_container">
+            <div class="send_inner">
+                
+                <div class="send_content">
+                    
+                    <h2>Need a Project?</h2>
+                
+                    <p>Let us know what you're looking for in an agency. We'll take a look and see if this could be the start of something beautiful.</p>
+                    
+                </div>
+                
+                <div class="send_forms">
+                    
+                    <div class="input_personal">
+                        
+                        <input class="input_name" type="text" placeholder="Your Name" required size="40">
+                        
+                        <input class="input_email" type="email" placeholder="Your E-mail" required size="40">
+                        
+                    </div>
+                    
+                    <div class="input_message">
+                        
+                        <input class="input_title" type="text" placeholder="Your Title" required size="89">
+                        
+                        <textarea class="input_message" name="message" cols="87" rows="10" placeholder="Your Comment" required></textarea>
+                        
+                    </div>
+                    
+                    <a href="#">Send Message</a>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /Send\ -->
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer_inner">
+                
+                <!-- Item 1 -->
+                <div class="footer_item">
+                    
+                    <h3>Piroll Design, Inc.</h3>
+                    
+                    <p>© 2017 Piroll. All rights reserved. Designed by robirurk. Made by <a href="https://vk.com/nemetomorf">Denis Timofeev</a></p>
+                    
+                </div>
+                <!-- /Item 1\ -->
+                
+                <!-- Item 2 -->
+                <div class="footer_item center">
+                    
+                    <p>hello@pirolltheme.com</p>
+                    <p>+44 987 065 908</p>
+                    
+                </div>
+                <!-- /Item 2\ -->
+                
+                <!-- Item 3 -->
+                <div class="footer_item center">
+                    
+                    <a href="https://vk.com/nemetomorf">VK</a>
+                    <a href="https://vk.com/nemetomorf">Instagramm</a>
+                    <a href="https://vk.com/nemetomorf">Facebook</a>
+                    
+                </div>
+                <!-- /Item 3\ -->
+                
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer\ -->
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
